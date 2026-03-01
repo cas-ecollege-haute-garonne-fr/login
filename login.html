@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="fr"><head>
+        <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Bienvenue dans votre environnement d'apprentissage numérique - Authentification</title>
+        <link rel="stylesheet" href="content/css/style-components-kosmos-bd6841970fdbbcd1be0c.css"><link rel="stylesheet" href="static/charte-default.css"><link rel="stylesheet" href="static/charte.css"><link rel="icon" href="static/favicon.ico" type="image/x-icon"><link type="text/css" rel="stylesheet" charset="UTF-8" href="https://www.gstatic.com/_/translate_http/_/ss/k=translate_http.tr.2f3WBw8L4SI.L.W.O/am=AAAM/d=0/rs=AN8SPfp0Aw7R6LuNGcvWztc4ZbKYxlauww/m=el_main_css"></head>
+
+    <body class="cas">
+        <header class="color--comp--dark panel text--center cas__header" role="banner">
+    <a href="login.html" title="Retour au service d'authentification" class="cas__header-link">
+        <img src="static/logo.png" id="authentification_logo" alt="Logo de l'école Engo" class="cas__header-logo media-responsive"><span class="screen-reader-text"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Retour à la page principale du service d'authentification</font></font></span>
+    </a>
+    <span class="cas__header-baseline">
+        <span class="space space--sm cas__header-spacer"></span>
+        <span class="h5-like cas__header-baseline-text"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">Logiciel de gestion de l'éducation</font></font></span>
+    </span>
+</header>
+        <main role="main">
+
+            <div class="container cas__container">
+                <div class="row">
+                    <div class="col col--xs-12 col--sm-10 push--sm-1 col--md-8 push--md-2 col--lg-6 push--lg-3 col--xl-4 push--xl-4 cas__col">
+                        <div class="panel panel--outlined cas__panel">
+                            <div class="panel__body">
+                                <h1 class="screen-reader-text cas__wayf-title">S'authentifier en tant que</h1>
+
+<p class="cas__wayf-message">Bienvenue dans votre Environnement Numérique de Travail. Vous voulez vous connecter à l'ENT tant que :</p>
+
+<form action="index.html" method="get" class="cas__wayf-form">
+
+    <div>
+            <div class="cas__wayf-idp h5-like"><span class="space space--sm"></span>
+                <input type="radio" name="selection" class="js-wayf-composant" id="idp-EDU_parent_eleve" value="EDU_parent_eleve" data-memorisable="true"><label for="idp-EDU_parent_eleve" class="form__label">Élève ou parent avec EduConnect</label>
+            </div>
+            </div>
+
+        <hr class="divider"><div>
+            <div class="cas__wayf-idp h5-like"><span class="space space--sm"></span>
+                <input type="radio" name="selection" class="js-wayf-composant" id="idp-TLS-AAA_enseignant" value="TLS-AAA_enseignant" data-memorisable="true"><label for="idp-TLS-AAA_enseignant" class="form__label">Personnel de l'Éducation Nationale</label>
+            </div>
+            </div>
+
+        <hr class="divider"><div>
+            <div class="cas__wayf-idp h5-like"><span class="space space--sm"></span>
+                <input type="radio" name="selection" class="js-wayf-composant" id="idp-CG31_personnel" value="CG31_personnel" data-memorisable="true"><label for="idp-CG31_personnel" class="form__label">Personnel Conseil Départemental Haute-Garonne</label>
+            </div>
+            </div>
+
+        <hr class="divider"><div>
+            <div class="cas__wayf-idp h5-like"><span class="space space--sm"></span>
+                <input type="radio" name="selection" class="js-wayf-composant" id="idp-ENT" value="ENT" data-memorisable="true"><label for="idp-ENT" class="form__label">Autre</label>
+            </div>
+            </div>
+
+        <hr class="divider slug slug--xs"><div class="text--right cas__wayf-submit">
+        <input id="button-submit" type="submit" name="submit" value="Valider" class="btn btn--primary"></div>
+
+</form>
+
+<script src="static/wayf.js"></script>
+        </div>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </main>
+
+        
+
+<script>(function(){
+  const TARGETS = {
+    "idp-EDU_parent_eleve": "https://cas.ecollege.haute-garonne.fr/clientredirect?client_name=EDU",
+    "idp-TLS-AAA_enseignant": "https://login-ac-toulouse-fr.github.io/idp/profile/oidc/authorize-execution-e2s3.html",
+    "idp-CG31_personnel": "https://cas.ecollege.haute-garonne.fr/clientredirect?client_name=CG31",
+    "idp-ENT": "https://cas.ecollege.haute-garonne.fr/login?selection=ENT&submit=Valider"
+  };
+
+  function getSelectedId(){
+    for (const id of Object.keys(TARGETS)){
+      const el = document.getElementById(id);
+      if (el) {
+        if ('checked' in el && el.checked) return id;
+        if (el.getAttribute && el.getAttribute('aria-pressed') === 'true') return id;
+        if (el.classList && (el.classList.contains('active') || el.classList.contains('is-selected'))) return id;
+      }
+      const lab = document.querySelector('label[for="' + id + '"]');
+      if (lab) {
+        if (lab.classList && (lab.classList.contains('active') || lab.classList.contains('is-selected'))) return id;
+        if (lab.getAttribute && lab.getAttribute('aria-pressed') === 'true') return id;
+      }
+    }
+
+    const radios = document.querySelectorAll('input[type="radio"]');
+    for (const r of radios){
+      if (r.checked) return r.id || null;
+    }
+
+    return null;
+  }
+
+  function handleAction(event){
+    try {
+      if (event && event.preventDefault) event.preventDefault();
+      if (event && event.stopImmediatePropagation) event.stopImmediatePropagation();
+    } catch(e){}
+
+    const sel = getSelectedId();
+    const url = sel ? TARGETS[sel] : null;
+
+    if (url) {
+      window.location.href = url;
+    } else {
+    }
+  }
+
+  function attachToButton(btn){
+    if (!btn || btn._patched) return;
+    btn.addEventListener('click', handleAction, true);
+    btn.addEventListener('keydown', function(e){ if (e.key === 'Enter') handleAction(e); }, true);
+
+    const form = btn.form || document.querySelector('form');
+    if (form && !form._patched) {
+      form.addEventListener('submit', function(e){ handleAction(e); }, true);
+      form._patched = true;
+    }
+
+    btn._patched = true;
+  }
+
+  function findButton(){
+    return document.getElementById('button-submit') ||
+           document.querySelector('input[type="submit"].btn--primary[name="submit"]') ||
+           document.querySelector('button#button-submit') ||
+           null;
+  }
+
+  function init(){
+    const btn = findButton();
+    if (btn) attachToButton(btn);
+
+    const mo = new MutationObserver(function(muts){
+      const b = findButton();
+      if (b) attachToButton(b);
+    });
+
+    mo.observe(document.documentElement || document.body, { childList: true, subtree: true, attributes: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();</script>
+</body></html>
